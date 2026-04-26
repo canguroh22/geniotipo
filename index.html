@@ -575,7 +575,7 @@
   <input type="tel" name="telefono" placeholder="Teléfono / WhatsApp">
   <textarea name="mensaje" placeholder="Contame qué estás buscando..."></textarea>
   <button type="submit" class="submit-btn" id="submitBtn">Enviar consulta</button>
-  <div id="successMsg" style="display:none; background:#ecfff8; border:1px solid #c589e8; color:#4c191b; padding:14px 18px; border-radius:12px; font-size:15px; text-align:center;">
+  <div id="successMsg" style="display:none; background:#ecfff8; border:1px solid #c589e8; color:#4c191b; padding:14px 18px; border-radius:12px; font-size:15px; text-align:center; margin-top:8px; width:100%;">
     ✓ ¡Mensaje enviado! Te contactamos pronto.
   </div>
 </form>
@@ -669,7 +669,11 @@
     btn.textContent = 'Enviando...';
     setTimeout(function() {
       document.getElementById('contactForm').reset();
-      btn.style.display = 'none';
+     btn.style.opacity = '0';
+btn.style.height = '0';
+btn.style.padding = '0';
+btn.style.margin = '0';
+btn.style.overflow = 'hidden';
       msg.style.display = 'block';
     }, 2000);
   });
