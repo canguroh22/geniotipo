@@ -563,25 +563,22 @@
   </section>
 
   <!-- CONTACTO -->
-  <section class="section contact-section" id="contacto">
-    <div class="container">
-      <div class="section-label fade-up">Contacto</div>
-      <h2 class="section-title fade-up">Reservá tu sesión</h2>
-      <p class="section-subtitle fade-up">Completá el formulario y te contacto para coordinar.</p>
-      <div class="contact-grid">
-        <form class="contact-form fade-up" id="contactForm">
-          <input type="hidden" name="_subject" value="Nueva consulta desde Geniotipo">
-          <input type="hidden" name="_captcha" value="false">
-          <input type="hidden" name="_next" value="https://descubrirmitalento.com.ar/#contacto">
-          <input type="text" name="nombre" placeholder="Nombre completo" required>
-          <input type="email" name="email" placeholder="Email" required>
-          <input type="tel" name="telefono" placeholder="Teléfono / WhatsApp">
-          <textarea name="mensaje" placeholder="Contame qué estás buscando..."></textarea>
-          <button type="submit" class="submit-btn" id="submitBtn">Enviar consulta</button>
-          <div id="successMsg" style="display:none; background:#ecfff8; border:1px solid #c589e8; color:#4c191b; padding:14px 18px; border-radius:12px; font-size:15px; text-align:center;">
-            ✓ ¡Mensaje enviado! Te contactamos pronto.
-          </div>
-        </form>
+<iframe name="hidden_iframe" style="display:none"></iframe>
+<form class="contact-form fade-up" id="contactForm" 
+      action="https://formsubmit.co/2e8b6c967f547425d7c1c3991c9a910a" 
+      method="POST" 
+      target="hidden_iframe">
+  <input type="hidden" name="_subject" value="Nueva consulta desde Geniotipo">
+  <input type="hidden" name="_captcha" value="false">
+  <input type="text" name="nombre" placeholder="Nombre completo" required>
+  <input type="email" name="email" placeholder="Email" required>
+  <input type="tel" name="telefono" placeholder="Teléfono / WhatsApp">
+  <textarea name="mensaje" placeholder="Contame qué estás buscando..."></textarea>
+  <button type="submit" class="submit-btn" id="submitBtn">Enviar consulta</button>
+  <div id="successMsg" style="display:none; background:#ecfff8; border:1px solid #c589e8; color:#4c191b; padding:14px 18px; border-radius:12px; font-size:15px; text-align:center;">
+    ✓ ¡Mensaje enviado! Te contactamos pronto.
+  </div>
+</form>
         </form>
         <div class="contact-info fade-up">
           <div class="contact-item">
@@ -665,25 +662,16 @@
     document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
   </script>
 <script>
-  document.getElementById('contactForm').addEventListener('submit', function(e) {
-    e.preventDefault();
-    const form = this;
+  document.getElementById('contactForm').addEventListener('submit', function() {
     const btn = document.getElementById('submitBtn');
     const msg = document.getElementById('successMsg');
     btn.disabled = true;
     btn.textContent = 'Enviando...';
-    fetch('https://formsubmit.co/2e8b6c967f547425d7c1c3991c9a910a', {
-      method: 'POST',
-      body: new FormData(form)
-    }).then(() => {
-      form.reset();
+    setTimeout(function() {
+      document.getElementById('contactForm').reset();
       btn.style.display = 'none';
       msg.style.display = 'block';
-    }).catch(() => {
-      btn.disabled = false;
-      btn.textContent = 'Enviar consulta';
-      alert('Hubo un error. Intentá de nuevo.');
-    });
+    }, 2000);
   });
 </script>
 </body>
